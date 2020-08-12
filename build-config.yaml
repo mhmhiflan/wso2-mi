@@ -15,16 +15,17 @@ spec:
       uri: 'https://github.com/mhmhiflan/wso2-mi.git'
     type: Git
   strategy:
+    dockerStrategy: null
     type: Docker
   triggers:
-    - imageChange:
+     imageChange:
         lastTriggeredImageID: >-
           172.30.1.1:5000/wso2/wso2-mi
       type: ImageChange
-    - type: ConfigChange
-    - generic:
+      type: ConfigChange
+      generic:
         secret: be3176bd722bf11d
       type: Generic
-    - github:
+      github:
         secret: bcdd9e63bf255b80
       type: GitHub
