@@ -15,7 +15,6 @@ spec:
       uri: 'https://github.com/mhmhiflan/wso2-mi.git'
     type: Git
   strategy:
-    dockerStrategy:
     type: Docker
   triggers:
     - imageChange:
