@@ -1,29 +1,31 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: wso2-mi
+  name: my-application-docker
 spec:
 
   output:
     to:
       kind: ImageStreamTag
-      name: 'wso2-mi:latest'
+      name: 'my-application-docker:latest'
   runPolicy: Serial
   source:
     git:
       ref: master
-      uri: 'https://github.com/mhmhiflan/wso2-mi.git'
+      uri: 'https://github.com/mmumshad/simple-webapp-docker.git'
     type: Git
   strategy:
-    dockerStrategy: null
+    dockerStrategy:
     type: Docker
   triggers:
-     imageChange:
-        lastTriggeredImageID: '172.30.1.1:5000/wso2/wso2-mi'
+    - imageChange:
+        lastTriggeredImageID: >-
+          172.30.1.1:5000/openshift/python@sha256:ce717a1f4817162287e2357d4c2db602b80487b3cc7df8db24ae709e9d322af2
       type: ImageChange
-      generic:
+    - type: ConfigChange
+    - generic:
         secret: be3176bd722bf11d
       type: Generic
-      github:
+    - github:
         secret: bcdd9e63bf255b80
       type: GitHub
